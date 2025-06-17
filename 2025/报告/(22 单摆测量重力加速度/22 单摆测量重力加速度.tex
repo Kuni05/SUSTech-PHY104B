@@ -1,0 +1,243 @@
+\documentclass[12pt,a4paper]{article}
+
+% 如果需要中文支持，推荐使用xeCJK + 字体设置
+\usepackage{xeCJK}
+\setCJKmainfont[BoldFont=SimHei]{SimSun}  % 示例：宋体，可根据系统字体情况更换
+\usepackage{amsmath}      % 数学公式（如有需要）
+\usepackage{graphicx}     % 插图
+\usepackage{geometry}     % 调整页边距
+\usepackage{fancyhdr}     % 自定义页眉页脚
+\usepackage{indentfirst}  % 中文首行缩进
+\usepackage{calc}         % 允许做长度运算(测量文字宽度等)
+\usepackage{titlesec}
+\usepackage{setspace}
+
+% 设置 \section 级标题为：加粗、大字号（如 \Large）
+\titleformat{\section}
+	{\bfseries\large}    % 标题自身的格式
+	{\thesection}        % 标题编号的显示方式
+	{1em}                % 编号与标题文字之间的间距
+	{}                   % 在标题文字前后可插入额外代码，此处为空
+	
+% 设置 \subsection 级标题为：加粗、中等字号（如 \normalsize）
+\titleformat{\subsection}
+	{\bfseries\normalsize}
+	{\thesubsection}
+	{1em}
+{}
+
+% 页面设置（可根据需要微调）
+\geometry{
+	left=2cm,
+	right=2cm,
+	top=1cm,
+	bottom=2cm
+}
+
+% 不需要过大的行距，使用较接近单倍行距的设置
+\renewcommand{\baselinestretch}{1.1}
+
+% 仅在页脚居中显示页码，页眉保持为空
+\pagestyle{fancy}
+\fancyhf{}  % 清空默认的页眉页脚
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 首行缩进2字符(中文习惯)
+\setlength{\parindent}{0pt}
+\setlength{\leftskip}{2em}
+
+\begin{document}
+	\doublespacing
+	
+	
+	%-------------------------------------------------------
+	% 1) 并排两个minipage：左标题、右校徽
+	%   - 0.65\textwidth + 0.35\textwidth = \textwidth
+	%   - 如果校徽过大或过小，可改宽度，如 0.25\textwidth、0.3\textwidth 等
+	%   - 如果想让标题更大，可将 \Huge 改成 \huge 或 \LARGE
+	%-------------------------------------------------------
+	\noindent
+	\hspace{-2em}
+	\begin{minipage}[c]{0.65\textwidth}
+		\raggedright
+		{\fontsize{40pt}{60pt}\selectfont 物理实验报告}
+	\end{minipage}
+	\begin{minipage}[c]{0.35\textwidth}
+		\raggedleft
+		% 强制把校徽拉大到 0.35\textwidth 宽度 (高度自动匹配)
+		% 若想指定高度,可用 "height=3cm" 等. 二选一即可.
+		\includegraphics[width=\linewidth, trim={20cm 20cm 20cm 20cm}, clip]{university_logo.png}
+	\end{minipage}
+
+	\vspace{-1em}
+	
+
+	%下方画两条分割线，并在两线之间写学号、姓名、日期、时间
+	
+	\hrule
+	\vspace{0.4em}
+	\hspace{-2.2em}
+	\noindent
+	学号：\underline{\makebox[2.7cm][c]{114514}} \quad
+	姓名：\underline{\makebox[2.7cm][c]{SUSTech}} \quad
+	日期：\underline{\makebox[2.7cm][c]{年/月/日}} \quad
+	时间：\underline{\makebox[2.7cm][c]{周二下午班}}
+	\vspace{-1em}
+	\par
+	\hrule
+	
+
+	%正文示例
+
+	
+	\section{实验名称：单摆测量重力加速度}
+	
+	\section{实验目的}
+	\par
+	1) 利用经典的单摆公式，依据器材和对重力加速度的测量精度要求，进行设计性实验基本方法的演练。 
+	\\
+	2) 学习应用误差均分原则，选用适当的仪器和测量方法，完成设计性实验内容。
+	
+	\section{实验仪器}
+	游标卡尺，钢卷尺，电子秒表，单摆实验仪
+	
+	\section{实验原理}
+	
+	\textbf{1)}已知单摆周期的理论公式为：\[ T = 2\pi \sqrt{\frac{l}{g}} \]
+	
+	因此我们能推导出重力加速度的计算公式：\[ g = \frac{4\pi^2 l}{T^2} \]
+	其中\( l \)为摆长，\( T \)为单摆周期，\( t \)为测量时间，\( N \)为周期数。	
+	
+	由于摆长\( l = \frac{D}{2} + l_{\text{绳长}} \),
+	
+	因此待测物理量有：总时间\( t \)，小球直径\( D \)，绳长\( l_{\text{绳长}} \)。
+	\\
+	\\
+	\textbf{2)}根据相对误差要求\( \frac{\Delta g}{g} < 1\% \)，以及误差均分原理\( \frac{\Delta g}{g} = \frac{\Delta l}{l} + \frac{2\Delta t}{t} \)，则有：\[ \frac{\Delta l}{l} < 0.5\% , \frac{2\Delta t}{t} < 0.5\%  \]
+	
+	\textbf{对\( \frac{\Delta l}{l} \)进行估算}，假设摆长\( \approx \)70.00cm，为了达到\(\frac{\Delta l}{l} < 0.5\%  \)，则\( \Delta l < 0.35cm \)
+	
+	根据\( \Delta l = \frac{\Delta D}{2} + \Delta l_{\text{绳长}} \)，利用仪器的最大允差进行估算，可得：
+	\[ \Delta l_{\text{绳长}} = \Delta \text{米} \approx 0.08cm \]
+	\[ \Delta D = \Delta \text{卡尺} \approx 0.002cm \]
+	\[ \Delta l = \frac{\Delta D}{2} + \Delta l_{\text{绳长}} \approx 0.081cm << 0.35cm \]
+	因此，实验使用钢卷尺测量线长，游标卡尺测量小球直径，可以满足\(\frac{\Delta l}{l} < 0.5\%  \)。
+	
+	\textbf{对\( \frac{2\Delta t}{t} \)进行估算}，秒表精度$\Delta \text{秒} \approx 0.01s$,开停秒表的总反应时间$\Delta \text{人} \approx 0.2s$，则：\[ \Delta t = \Delta \text{秒} + \Delta \text{人} \approx 0.2s \]
+	假设单摆周期$T = 1.7s$，为保证\( \frac{2\Delta t}{t} < 0.5 \% \)，利用$t = NT$得$N>47$，因此可以通过测量多个单摆周期来减小时间测量的误差，提高周期测量的精确度。
+	\\
+	\\
+	此处我们得出，至少要测量48个单摆周期才能达到测量精度的要求。
+	
+	
+	\section{实验内容}
+	根据要求设计实验，步骤如下：
+	
+	（1）使用游标卡尺测量小球直径$D$。
+	
+	（2）将摆线挂上单摆实验仪，使用钢卷尺测量摆线长度$l_{\text{绳长}}$。调整夹具，控制绳长在70.00cm附近。
+		
+	（3）将小球拉开一个小于5度的摆角并释放，小球相邻两次向右经过摆线和中线重合点（及最低点）之间的时间间隔记为一个周期。
+	
+	（4）使用秒表测量$N$次周期的时长$t$，$N$取50（依据见实验原理部分）。小球第1次经过最低点时启动秒表，第51次经过最低点时按停秒表。
+	
+	（5）每个物理量重复测量五次并取平均值以减小随机误差。
+	
+	（6）根据公式处理数据，得出结论。
+	
+	\section{数据记录}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		 & 1 & 2 & 3 & 4 & 5 & 平均值 \\
+		\hline
+		摆线长度$l_{\text{绳长}}$(cm) & 70.52 & 70.75 & 71.11 & 70.95 & 70.90 & 70.846 \\
+		\hline
+		小球直径$D$(mm) & 20.00 & 20.04 & 20.02 & 20.02 & 20.00 & 20.016 \\
+		\hline
+		\end{tabular}
+	\end{center}
+	
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|}
+			\hline
+			& 1 & 2 & 3 & 4 & 5 & 平均值 \\
+			\hline
+			50个单摆周期$t$(s) & 85.00 & 85.09 & 85.06 & 85.06 & 85.03 & 85.048 \\
+			\hline
+		\end{tabular}
+	\end{center}
+	后附原始数据。
+	
+	\section{数据处理}
+	根据公式：\[ g = \frac{4\pi^2 l}{T^2} \]
+	代入数据计算：\[ g = \frac{4\pi^2 \times 50^2 \times (0.70846 + \frac{0.02016}{2}) } {85.048^2} \]
+	得：\[ g \approx 9.80443 m/s^2  \]
+	\textbf{计算A类不确定度：}
+	\[ u_a(l_{\text{绳长}}) = \sqrt{\frac{\sum(l_{\text{绳长}i} - \bar{l}_{\text{绳长}})^2}{n(n-1)}} = \sqrt{\frac{(70.52 - 70.846)^2 + \cdots + (70.90 - 70.846)^2}{5 \times 4}} \approx 0.09973cm \] 
+	
+	\[ u_a(D) = \sqrt{\frac{\sum(D_i - \bar{D})^2}{n(n-1)}} = \sqrt{\frac{(20.00 - 20.016)^2 + \cdots + (20.00 - 20.016)^2}{5 \times 4}} \approx 0.007483mm \]
+	
+	\[ u_a(t) = \sqrt{\frac{\sum(t_i - \bar{t})^2}{n(n-1)}} = \sqrt{\frac{(85.00 - 85.048)^2 + \cdots + (85.03 - 85.048)^2}{5 \times 4}} \approx 0.01530s \]
+	
+	\textbf{计算B类不确定度：}
+	\[ u_b(l_{\text{绳长}}) = \frac{\sqrt{\Delta^{2}_{\text{估}}(l_{\text{绳长}}) + \Delta^{2}_{\text{仪}}(l_{\text{绳长}})}}{C_\text{米}}  = \frac{\sqrt{0.05^2 + 0.08^2}}{3} \approx 0.03144cm \]
+	
+	\[ u_b(D) = \frac{\sqrt{\Delta^{2}_{\text{估}}(D) + \Delta^{2}_{\text{仪}}(D)}}{C_\text{卡尺}}  = \frac{\sqrt{0.02^2 + 0.02^2}}{\sqrt{3}} \approx 0.01633mm \]
+	
+	\[ u_b(t) = \frac{\sqrt{\Delta^{2}_{\text{估}}(t) + \Delta^{2}_{\text{仪}}(t)}}{C_\text{秒}}  = \frac{\sqrt{0.2^2 + 0.01^2}}{3} \approx 0.06675s \]
+	
+	\textbf{计算各物理量取置信区间为0.95的展伸不确定度：}
+	
+	$P=0.95$，公式为：
+	\[ U_{0.95} = \sqrt{(t_{0.95}u_a)^2 + (k_{0.95}u_b)^2} \]
+	对于$n=5,P=0.95$，查表得$t_{0.95}=2.78$。
+	
+	钢卷尺，电子秒表遵循正态分布，$k_{0.95} = 1.96$。
+	
+	游标卡尺遵循均匀分布，$k_{0.95} = 1.65$。
+	\[ U_{0.95}(l_{\text{绳长}}) = \sqrt{(2.78\times 0.0997296)^2 + (1.96\times 0.03144)^2} \approx 0.1720cm  \]
+	
+	\[ U_{0.95}(D) = \sqrt{(2.78\times 0.007483)^2 + (1.64\times 0.01633)^2} \approx 0.02435mm  \]
+	
+	\[ U_{0.95}(t) = \sqrt{(2.78\times 0.01530)^2 + (1.96\times 0.06675)^2} \approx 0.09687s  \]
+	
+	\textbf{使用不确定度传递公式，合成间接测得的重力加速度的不确定度：}
+	
+	由于\( l = \frac{D}{2} + l_{\text{绳长}} \),有
+	
+	\[ U_{0.95}(l) =  \sqrt{U_{0.95}^2(l_{\text{绳长}}) + (\frac{1}{2}U_{0.95}(D))^2} = \sqrt{1.720^2 + (\frac{1}{2}\times 0.02435)^2} \approx 1.720mm \]
+	
+	又有：
+	
+	\[ \frac{U_{0.95}(g)}{g} = 	\sqrt{(\frac{U_{0.95}(l)}{l})^2 + (\frac{2U_{0.95}(t)}{t})^2} = \sqrt{(\frac{1.720}{718.47})^2 + (\frac{2\times 0.09687}{85.048})^2} \approx 0.003305 \]
+	
+	\[ U_{0.95}(g) = 0.003305 \times 9.80443 \approx 0.03240m/s^2 \]
+	
+	\textbf{综上，实验测得的重力加速度为$(9.80443 \pm 0.03240)m/s^2(P=0.95)$}.
+	
+	使用深圳本地重力加速度参考值$g = 9.7887m/s^2$，可计算测量值的相对误差：
+	\[ \frac{\Delta g}{g} = \frac{9.80443-9.7887}{9.7887} \approx 0.0016 = 0.16\% < 1\% \]
+	测量结果符合设计要求。
+	
+	\section{误差分析}
+	(1)将摆角小于5度的单摆运动近似为简谐运动，近似过程存在误差。
+	\\
+	(2)操作时很难让单摆做纯粹的平面内摆动，几乎必然演变成圆锥摆。
+	\\
+	(3)摆线和单摆实验仪连接处存在摩擦力，小球摆动受空气阻力。
+	\\
+	(4)摆线有一定弹性，在小球摆动时受向心力会略微变长。
+	
+	\section{实验结论}
+	本实验利用单摆实验仪以及一系列测量工具，通过计算间接测得本地重力加速度。
+	\\
+	测量值$g=(9.80443 \pm 0.03240)m/s^2(P=0.95)$。
+	\\
+	相对误差$\frac{\Delta g}{g} = 0.16\%$，符合设计要求。
+
+	
+	
+\end{document}
