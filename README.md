@@ -5,15 +5,16 @@ SUSTech-PHY104B基础物理实验LaTeX报告（本项目可收纳相关LaTeX文�
 
 此外，本人范例中所含的大部分Excel表格均可直接输入数据使用
 
-Contributors：
-
-2025Spring：Kuni05
-
 请注意，基础物理实验的教学内容与思考题会不定期调整，因此本模版与报告仅供参考。
 
 望来者能点亮该项目的star，真诚欢迎并鼓励未来的同学们参与贡献，分享自己的报告，共同维护和更新本项目，让我们一起学习，共同进步。
 
-Warning：注意不要全部抄袭和使用Contributors的数据，实验误差等相关数据会由于实验设备的不同而造成浮动
+# Contributors：
+
+2025Spring：Kuni05
+
+
+# Warning：注意不要全部抄袭和使用Contributors的数据，实验误差等相关数据会由于实验设备的不同而造成浮动
 
 ps.第一次使用Github和LaTeX本人极其推荐使用Overleaf在线编译平台
 
